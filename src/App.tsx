@@ -7,7 +7,7 @@ import Products from './pages/Products';
 import Applications from './pages/Applications';
 import Contact from './pages/Contact';
 
-function App() {
+export default function App() {
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
@@ -27,4 +27,3 @@ function App() {
   );
 }
 
-export default App;

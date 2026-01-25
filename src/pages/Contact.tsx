@@ -251,10 +251,10 @@ export default function Contact() {
     loading="lazy"
     referrerPolicy="no-referrer-when-downgrade"
   />
-</div>
-</div>
+  </div>
+  </div>
 
-      </section>
-    </div>
-  );
+        </section>
+      </div>
+    );
 }

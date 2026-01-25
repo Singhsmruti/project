@@ -18,7 +18,7 @@ export default function Products() {
     {
       name: 'Utility (Commercial) Gauges',
       description: 'General industrial applications such as compressors, pumps, boilers, hydraulic and pneumatic equipment.',
-      image: 'src/images/commercial pg.jpeg',
+      image: 'src/images/commercialpg.jpeg',
       features: [
         'Sizes: 40, 50, 63, 80, 100, 150, 250 mm',
         'Accuracy: ±2.5% FSD',
@@ -38,7 +38,7 @@ export default function Products() {
     {
       name: 'Stainless Steel Case (Liquid Fillable)',
       description: 'For severe conditions with pulsation or vibration. Glycerine filling protects against vibrations.',
-      image: 'src/images/ss liquid fillinf.png',
+      image: 'src/images/ssliquidfillinf.png',
       features: [
         'Sizes: 63, 100 and 150mm',
         'Accuracy: ±1.0-1.6% FSD',
@@ -59,7 +59,7 @@ export default function Products() {
     {
       name: 'Solid Front Case (Liquid Fillable)',
       description: 'All stainless steel construction for chemical/petrochemical, power stations, mining, offshore applications.',
-      image: 'src/images/ss liquid fillinf.png',
+      image: 'src/images/ssliquidfillinf.png',
       features: [
         'Sizes: 100 and 150mm',
         'EN 837-1 Design',
@@ -80,7 +80,7 @@ export default function Products() {
     {
       name: 'Differential Gauges (Bellotype, Chamber, Magnetic)',
       description: 'For gases and Liquid media, filter control system and differential flow measurement.',
-      image: 'src/images/magnetic differetial pg.png',
+      image: 'src/images/magneticdifferetialpg.png',
       features: [
         'Sizes: 63, 100, 115 (4 1/2") and 150mm',
         'Accuracy: ±2.0% FSD',
@@ -99,7 +99,7 @@ export default function Products() {
     {
       name: 'Process Gauges',
       description: 'Heavy duty construction for tough and corrosive applications in industries, process, power, and nuclear.',
-      image: 'src/images/process gauge.png',
+      image: 'src/images/processgauge.png',
       features: [
         'Size: 115mm (4.5")',
         'Accuracy: ±1.0% FSD',
@@ -118,7 +118,7 @@ export default function Products() {
     {
       name: 'Contact Gauges',
       description: 'Measurement and control of pressure by switching electrical contacts ON/OFF.',
-      image: 'src/images/contact gauge.png',
+      image: 'src/images/contactgauge.png',
       features: [
         'Sizes: 115mm (4 1/2")',
         'Accuracy: ±1.0% FSD',
@@ -135,7 +135,7 @@ export default function Products() {
     {
       name: 'Test Gauges',
       description: 'For laboratories and industries for pressure gauge testing and calibration.',
-      image: 'src/images/test gauge.png',
+      image: 'src/images/testgauge.png',
       features: [
         'Sizes: 150, 200 and 250mm',
         'Accuracy: ±0.5% FSD',
@@ -153,7 +153,7 @@ export default function Products() {
     {
       name: 'Precision Test Gauges',
       description: 'Highest accuracy for laboratory measurement and calibration.',
-      image: 'src/images/precision test.png',
+      image: 'src/images/precisiontest.png',
       features: [
         'Sizes: 150-200mm',
         'Accuracy: ±0.25% FSD',
@@ -171,7 +171,7 @@ export default function Products() {
     {
       name: 'Capsule gauge',
       description: 'suitable for dry and gaseous media that will not react with copper alloy parts.',
-      image: 'src/images/capsule pg.jpeg',
+      image: 'src/images/capsulepg.jpeg',
       features: [
         'Sizes: 63, 100 and 160mm',
         'Accuracy: ±02.0% FSD',
@@ -190,7 +190,7 @@ export default function Products() {
     {
       name: 'Diaphragm & Diaphragm Sealed Gauges & Flush type diaphragm',
       description: 'For corrosive, viscous, or crystallizing media where standard connections cannot be used.',
-      image: 'src/images/diaphragm seal.png',
+      image: 'src/images/diaphragmseal.png',
       features: [
         'Sizes: 53 and 63mm (4 1/2")',
         'Accuracy: ±1.6 - 2% FSD',
@@ -222,7 +222,7 @@ export default function Products() {
     {
       name: 'Triclover Gauge',
       description: 'Measure pressure in hygienic and sanitary process applications, where easy cleaning, quick installation, and contamination-free operation are required.',
-      image: 'src/images/riclover guage.png',
+      image: 'src/images/ricloverguage.png',
       features: [
         'Sizes: 115mm (1/2")',
         'Connection type: BSP',
@@ -266,7 +266,7 @@ export default function Products() {
     {
       name: 'All Angle Thermometers',
       description: 'For corrosive medium and chemical environments with 360° rotation capability.',
-      image: 'src/images/all angle .png',
+      image: 'src/images/allangle.png',
       features: [
         'Sizes: 63, 100, 115 and 150mm',
         'Range: -30°C to 400°C',
@@ -287,7 +287,7 @@ export default function Products() {
     {
       name: 'Gas in Metal Thermometers',
       description: 'For corrosive medium and higher temperature measurements.',
-      image: 'src/images/mng in metal.png',
+      image: 'src/images/mnginmetal.png',
       features: [
         'Sizes: 63, 100, 115 and 150mm',
         'Range: -50°C to 650°C',
@@ -307,7 +307,7 @@ export default function Products() {
     {
       name: 'Gas with Contact Thermometers',
       description: 'Temperature measurement with electrical contact switching capability.',
-      image: 'src/images/mng contact.webp',
+      image: 'src/images/mngcontact.webp',
       features: [
         'Sizes: 63, 100, 115 and 150mm',
         'Range: -50°C to 650°C',
@@ -328,7 +328,7 @@ export default function Products() {
 
   const accessories: Product[] = [
     {
-      name: 'Pulsation Dampeners',
+      name: 'PulsationDampeners',
       description: 'Protects gauges from rapid pressure fluctuations and sudden surge pressure.',
       image: 'src/images/pulsation dampner.jpeg',
       features: [
@@ -341,7 +341,7 @@ export default function Products() {
     {
       name: 'Pressure Snubbers',
       description: 'Saves instruments from severe line pulsations and pressure surges.',
-      image: 'src/images/Pressure-Snubber.jpg',
+      image: 'src/images/PressureSnubber.jpg',
       features: [
         'Three interchangeable pistons',
         'Self-cleaning design',
@@ -352,7 +352,7 @@ export default function Products() {
     {
       name: 'Gauge Savers',
       description: 'Over-load protector that cuts off pressure rises above desired value.',
-      image: 'src/images/gauge-saver.jpg',
+      image: 'src/images/gaugesaver.jpg',
       features: [
         'Automatic cut-off',
         'Adjustable set pressure',
@@ -385,7 +385,7 @@ export default function Products() {
     {
       name: 'Needle Valves',
       description: 'Precise flow control and gauge isolation.',
-      image: 'src/images/needle valve.webp',
+      image: 'src/images/needlevalve.webp',
       features: [
         'Fine adjustment',
         'Multiple connection sizes',
@@ -394,7 +394,7 @@ export default function Products() {
       ]
     },
     {
-      name: '2-Way Gauge Cock',
+      name: '2WayGauge Cock',
       description: 'Isolate or vent a pressure gauge from the process line, allowing safe pressure release, gauge protection, and maintenance without disturbing the process.',
       image: 'src/images/2-way-gauge-cock.jpg',
       features: [
@@ -405,7 +405,7 @@ export default function Products() {
       ]
     },
     {
-      name: 'Cooling Tower',
+      name: 'CoolingTower',
       description: 'Remove heat from water by evaporative cooling, commonly in HVAC, power plants, and industrial processes.',
       image: 'src/images/cooling tower.jpg',
       features: [

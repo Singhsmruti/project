@@ -1,5 +1,5 @@
 import { Target, Eye, Award, Shield } from 'lucide-react';
-
+import industry from './images/industry.webp';
 export default function About() {
   return (
     <div>
@@ -25,7 +25,7 @@ export default function About() {
               </p>
             </div>
             <img
-  src="src/images/industry.webp"
+  src = {industry}
   alt="Pressure Gauges"
   className="h-80 w-full object-cover"
 />

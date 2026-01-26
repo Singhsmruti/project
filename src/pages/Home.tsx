@@ -1,6 +1,8 @@
 import { ArrowRight, Award, Shield, Gauge } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
+import commercialpg from "./images/commercialpg.jpeg";
+import bimetal from "./images/bimetal.png";
+import FlangedThermowell from "src/images/FlangedThermowell.jpg";
 export default function Home() {
   return (
     <div>
@@ -80,7 +82,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <img
-  src="src/images/commercial pg.jpeg"
+  src= {commercialpg}
   alt="Pressure Gauges"
   className="h-100 w-full object-cover"
 />
@@ -102,7 +104,7 @@ export default function Home() {
 
             <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <img
-  src="src/images/bimetal.png"
+  src= {bimetal}
   alt="Pressure Gauges"
   className="h-100 w-full object-cover"
 />
@@ -124,7 +126,7 @@ export default function Home() {
 
             <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <img
-  src="src/images/Flanged-Thermowell.jpg"
+  src= {FlangedThermowell} 
   alt="Pressure Gauges"
   className="h-100 w-full object-cover"
 />

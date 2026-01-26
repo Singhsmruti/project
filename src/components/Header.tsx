@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
-
+import icon from "src/images/icon.png";
 export default function Header() {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -23,7 +23,7 @@ export default function Header() {
               <div className="text-3xl font-bold">
                 <span className="inline-flex items-center text-4xl text-slate-800">
   <img
-    src="src/images/icon.png"
+    src={icon}
     alt="3S"
     className="h-[2em] w-auto mr-1"
   />

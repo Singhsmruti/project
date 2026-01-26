@@ -2,7 +2,7 @@ import { ArrowRight, Award, Shield, Gauge } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import commercialpg from "./images/commercialpg.jpeg";
 import bimetal from "./images/bimetal.png";
-import FlangedThermowell from "src/images/FlangedThermowell.jpg";
+import FlangedThermowell from "./images/FlangedThermowell.jpg";
 export default function Home() {
   return (
     <div>

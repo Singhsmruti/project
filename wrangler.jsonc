@@ -28,6 +28,25 @@
 	"compatibility_date": "2026-08-28",
 	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
 
+	// NON-SECRET configuration, in the repo ON PURPOSE.
+	//
+	// `wrangler deploy` replaces the worker's plaintext vars with whatever this
+	// file declares — anything typed into the dashboard as a *Variable* is wiped
+	// by the next deployment. (Secrets are NOT touched, which is why SMTP_USER and
+	// SMTP_PASS stay where they are.) On 2026-09-01 that is exactly what happened:
+	// the variables were set, the deploy landed, and /api/enquiry came back
+	// {"email":"not-configured"} because SMTP_HOST no longer existed.
+	//
+	// None of these three is a credential. The address is printed on the contact
+	// page, and the host and port are public knowledge. SMTP_PASS, ADMIN_PASSWORD
+	// and SUPABASE_KEY must NEVER appear here — this file is committed to a repo
+	// the client can read.
+	"vars": {
+		"SMTP_HOST": "smtp.gmail.com",
+		"SMTP_PORT": "465",
+		"ENQUIRY_TO": "3stechnology2024@gmail.com"
+	},
+
 	"assets": {
 		"directory": ".open-next/assets",
 		"binding": "ASSETS"

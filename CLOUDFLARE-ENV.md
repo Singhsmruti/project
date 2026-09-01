@@ -15,13 +15,22 @@ The worker is **`3stechnology`** — the live one. v2 was renamed onto it on
 Copy them out of `3S_Technology_v2/.env.local` on Onkar's machine. That file is
 gitignored and is the only place they exist.
 
+**Only the Secrets go in the dashboard now.** `wrangler deploy` replaces the
+worker's plaintext variables with whatever `wrangler.jsonc` declares, so anything
+typed in as a *Variable* is wiped by the next deployment — that is precisely what
+happened on 2026-09-01, and why the live form reported `email: not-configured`
+minutes after the values were entered. `SMTP_HOST`, `SMTP_PORT` and `ENQUIRY_TO`
+now live in `wrangler.jsonc` under `"vars"` and survive every deploy. **Secrets
+are never touched by a deploy**, which is why the credentials stay in the
+dashboard where they belong.
+
 | name | type | value |
 |---|---|---|
-| `SMTP_HOST` | Text | `smtp.gmail.com` |
-| `SMTP_PORT` | Text | `465` |
+| `SMTP_HOST` | in `wrangler.jsonc` | `smtp.gmail.com` — do not add in the dashboard |
+| `SMTP_PORT` | in `wrangler.jsonc` | `465` — do not add in the dashboard |
+| `ENQUIRY_TO` | in `wrangler.jsonc` | `3stechnology2024@gmail.com` — do not add in the dashboard |
 | `SMTP_USER` | **Secret** | the throwaway sender Gmail — **never** the company inbox |
 | `SMTP_PASS` | **Secret** | the 16-character Gmail **app password**, no spaces |
-| `ENQUIRY_TO` | Text | `3stechnology2024@gmail.com` — where enquiries land |
 | `ADMIN_PASSWORD` | **Secret** | the `/admin` password. **Change it** — `.env.local` holds a preview throwaway |
 | `ADMIN_SESSION_SECRET` | **Secret** | optional; any long random string. Rotating it logs every admin session out at once |
 | `SUPABASE_URL` | Text | only once the real project URL is known |

@@ -475,8 +475,12 @@ an honest `{delivered, emailed, stored}`.
 
 ### Before the domain moves
 
-1. Set the variables in the Cloudflare dashboard — `SUPABASE_*`, `ADMIN_*`,
-   `SMTP_*`, `ENQUIRY_TO`. Secrets as **secrets**, not plaintext vars.
+1. Set the variables on the worker — **the step-by-step is
+   [`CLOUDFLARE-ENV.md`](CLOUDFLARE-ENV.md)**, dashboard and CLI both, with which
+   ones are Secrets and how to verify without sending mail. Until they are set,
+   the deployed form shows "Could not submit the form" and falls back to
+   WhatsApp — correct behaviour, not a bug. `SMTP_*` + `ENQUIRY_TO` alone makes
+   enquiries arrive; Supabase only adds the `/admin` record.
 2. Delete `ThemeSwitch` and change `ADMIN_PASSWORD` off the preview throwaway.
 3. Deploy to `3stechnology-v2.workers.dev` and look at it there first.
 4. Only then point `3stechnology.in` at it — and fix `www.` (HTTP 522) while

@@ -5,7 +5,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { RfqProvider } from "@/components/Rfq";
-import ThemeSwitch from "@/components/ThemeSwitch";
 import { DEFAULT_THEME, THEME_STORAGE_KEY } from "@/data/themes";
 import { SITE } from "@/data/site";
 
@@ -101,7 +100,6 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
           <WhatsAppFloat />
-          <ThemeSwitch />
         </RfqProvider>
       </body>
     </html>

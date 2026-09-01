@@ -1,0 +1,44 @@
+{
+	// ---------------------------------------------------------------------------
+	// v2 on Cloudflare Workers, via the OpenNext adapter. Onkar, 2026-09-01.
+	//
+	// v2 is NOT a static site and cannot be uploaded like v1 was: /api/enquiry,
+	// the two admin routes and /admin are server-rendered, and that server side
+	// is the whole point of the rebuild — it is what stops the form claiming a
+	// send that never happened. So this is a Worker, not a Pages upload.
+	//
+	// THE NAME IS DELIBERATELY NOT `3stechnology`. That is the live v1 worker
+	// serving 3stechnology.in; deploying this under that name would replace the
+	// live site in one command. This lands beside it as its own worker with its
+	// own workers.dev URL, and the custom domain is moved over ONLY when Onkar
+	// and Smruti have looked at it and said so.
+	// ---------------------------------------------------------------------------
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "3stechnology-v2",
+	"main": ".open-next/worker.js",
+
+	// Held one day behind today's date on purpose: the installed workerd is
+	// 1.20260828.1 and rejects a compatibility_date it does not yet know.
+	"compatibility_date": "2026-08-28",
+	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS"
+	},
+
+	// next/image optimisation runs on the Workers Images binding.
+	"images": {
+		"binding": "IMAGES"
+	},
+
+	"observability": {
+		"enabled": true
+	}
+
+	// No R2 incremental cache binding, deliberately. Every page here is either
+	// static at build time or force-dynamic; there is no ISR and nothing to
+	// revalidate, so the cache bucket the template suggests would be an empty
+	// resource somebody has to create and pay attention to. Add it the day a
+	// route starts revalidating.
+}

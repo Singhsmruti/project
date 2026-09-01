@@ -1,0 +1,21 @@
+# Copy to .dev.vars for `wrangler dev`, and set the same names in the Cloudflare
+# dashboard (Workers > 3stechnology-v2 > Settings > Variables) for the deployed
+# worker. Secrets go in as SECRETS, not plaintext vars.
+#
+# WARNING, learned the hard way on 2026-09-01: wrangler also reads .env.local.
+# If that file holds the REAL Gmail credentials and the REAL ENQUIRY_TO, a POST
+# to /api/enquiry in local dev sends a live email to the company inbox. Put test
+# values in .dev.vars and pass --var to override, or point SMTP_HOST at the
+# local catcher (node smtp-catcher.mjs, port 2525) before you exercise the form.
+
+SUPABASE_URL=https://<project-ref>.supabase.co
+SUPABASE_KEY=<the anon public key -- server-only, never NEXT_PUBLIC_>
+
+ADMIN_PASSWORD=<the /admin password -- CHANGE from the preview throwaway>
+ADMIN_SESSION_SECRET=<optional; rotate to kill every admin session at once>
+
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=465
+SMTP_USER=<the THROWAWAY sender, never the company inbox>
+SMTP_PASS=<16-char Gmail app password on that throwaway, no spaces>
+ENQUIRY_TO=<the real inbox; defaults to SITE.emails[0]>

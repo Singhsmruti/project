@@ -17,3 +17,11 @@ tsconfig.tsbuildinfo
 
 # Local SMTP sink for testing the enquiry mail path. Handy, not shipped.
 smtp-catcher.mjs
+
+# Cloudflare / OpenNext build output and local secrets
+.open-next
+.wrangler
+.dev.vars
+.dev.vars.*
+# the template IS committed; the values never are
+!.dev.vars.example

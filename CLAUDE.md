@@ -390,6 +390,71 @@ Two things this touches, both already handled: `publish_models.py` joins on the
 photo filename *without* extension (above), and `src/app/page.tsx` carries three
 of these paths besides `products.ts`. Grep both before renaming any image.
 
+## Cloudflare — v2 runs as a WORKER, 2026-09-01
+
+Onkar: *"i wand v2 to be in cloudflare."* v1 was a Vite SPA uploaded as static
+files. **v2 cannot be deployed that way**: `/api/enquiry`, the two admin routes
+and `/admin` are server-rendered, and that server side is the entire reason this
+rebuild exists — it is what stops the form claiming a send that never happened.
+So v2 ships as a Worker through the OpenNext adapter.
+
+```bash
+npm run cf:build      # next build + OpenNext bundle -> .open-next/worker.js
+npm run cf:preview    # the same, then wrangler dev — the REAL workerd runtime
+npm run cf:deploy     # wrangler deploy   (needs `wrangler login` first)
+```
+
+**Next had to move to 16.3.4.** `@opennextjs/cloudflare@1.20.5` declares
+`next >=15.5.24 <16 || >=16.3.3`, and this project was pinned at **16.2.12** —
+inside the unsupported gap, deliberately, because that matched Sigma. Cloudflare
+won that trade. **Sigma is now one minor behind this project**; the house-stack
+parity from decision #45 is broken until Sigma follows.
+
+**`name` is `3stechnology-v2`, and that is not a detail.** The live v1 worker is
+`3stechnology`. Deploying under that name replaces the live site in one command.
+This lands beside it with its own `workers.dev` URL; the custom domain moves only
+when Onkar and Smruti have looked at it.
+
+**The Windows symlink trap.** `serverExternalPackages: ["nodemailer"]` is
+load-bearing for the local build (Turbopack rewrites nodemailer's socket handling
+and every send dies `ETIMEDOUT / CONN`). But OpenNext copies traced *external*
+packages by **symlink**, and creating one on Windows without Developer Mode is
+`EPERM` — the worker bundle dies on `nodemailer`. So `next.config.ts` drops the
+external list when `CF_BUILD=1`, and `scripts/cf-build.mjs` sets it. Bundling it
+normally costs nothing on Workers, where Turbopack is not involved.
+
+That wrapper script exists for a second Windows reason: **Node 20.12+ refuses to
+spawn a `.cmd` shim without `shell: true`, and it fails silently** — status null,
+no output, exit 1, nothing to read. It calls the adapter's
+`dist/cli/index.js` with `process.execPath` instead.
+
+**SMTP genuinely works on Workers — measured, not assumed.** nodemailer opens a
+real TCP socket under `nodejs_compat`: pointed at the local catcher, workerd
+delivered a complete multipart message with the right `Reply-To`. The enquiry
+route needs no Workers-specific rewrite.
+
+**wrangler dev reads `.env.local`.** On 2026-09-01 a smoke-test POST to
+`/api/enquiry` therefore went out over the REAL Gmail credentials to the REAL
+`ENQUIRY_TO` — a live test enquiry into the company inbox. Use `.dev.vars` (see
+`.dev.vars.example`), pass `--var`, or point `SMTP_HOST` at `smtp-catcher.mjs`
+on 2525 before exercising that form locally.
+
+No R2 cache binding, on purpose: every route is prerendered or `force-dynamic`,
+there is no ISR, and an empty bucket is a resource somebody has to mind.
+
+**Verified in workerd, not just built:** `/`, `/products`, a product page,
+`/selector`, `/sitemap.xml` and `GET /api/enquiry` all 200, and a POST returned
+an honest `{delivered, emailed, stored}`.
+
+### Before the domain moves
+
+1. Set the variables in the Cloudflare dashboard — `SUPABASE_*`, `ADMIN_*`,
+   `SMTP_*`, `ENQUIRY_TO`. Secrets as **secrets**, not plaintext vars.
+2. Delete `ThemeSwitch` and change `ADMIN_PASSWORD` off the preview throwaway.
+3. Deploy to `3stechnology-v2.workers.dev` and look at it there first.
+4. Only then point `3stechnology.in` at it — and fix `www.` (HTTP 522) while
+   you have the dashboard open.
+
 ## The type floor, 2026-09-01
 
 Onkar: *"the user of website cant see small things."* The hierarchy on a product

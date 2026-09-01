@@ -108,8 +108,13 @@ and mark *Not spam*, or the leads pile up in a folder nobody opens.
 
 ---
 
-## Two things to do before the domain moves to this worker
+## Still outstanding
 
-1. **Change `ADMIN_PASSWORD`.** `.env.local` carries `letmein-3s-preview`.
-2. **Delete `ThemeSwitch`** — the component and its import in `layout.tsx`. It is
-   a preview control; the themes work without it.
+1. **Change `ADMIN_PASSWORD`.** `.env.local` carries `letmein-3s-preview`, and
+   whatever was pasted into the worker on 2026-09-01 should not be that.
+2. **The Supabase anon key.** Until it exists, `/admin` has nothing to read and
+   the durable record of each enquiry does not happen — email is carrying the
+   whole load. It is also the answer to whether the `inquiries` table ever held
+   real leads from v1.
+
+`ThemeSwitch` is done — deleted 2026-09-01, before the live switch.

@@ -442,6 +442,33 @@ on 2525 before exercising that form locally.
 No R2 cache binding, on purpose: every route is prerendered or `force-dynamic`,
 there is no ISR, and an empty bucket is a resource somebody has to mind.
 
+### The auto-deploy, and the loop that nearly ate it
+
+Cloudflare Workers Builds is git-connected to this repo. Its settings, read off
+the 2026-09-01T13:15Z log, are **build `npm run build`, deploy `npx wrangler
+deploy`** — and they are correct as they stand; do not change them. Wrangler
+detects an OpenNext project and delegates to `opennextjs-cloudflare deploy`,
+which needs `.open-next/` to exist already. Plain `next build` does not make it:
+
+```
+ERROR Could not find compiled Open Next config, did you run the build command?
+```
+
+So `npm run build` runs `scripts/build.mjs`, which produces the worker bundle on
+Linux (the CI) and a plain `next build` on Windows — OpenNext symlinks traced
+external packages, and that is `EPERM` here. `FORCE_CF_BUILD=1` runs the CI path
+locally anyway; that is how it was proved before pushing.
+
+**The trap that cost a build: the adapter builds the app by running
+`npm run build` itself** (`buildNextjsApp` → `${packager} run build`). Point that
+script at the adapter and it calls itself forever — measured, it forks until the
+process dies, and on CI it would burn the build minutes before failing.
+`open-next.config.ts` sets `buildCommand = "npx --no-install next build"` to
+break the loop. **Never remove that line while `build` produces the bundle.**
+
+Proved before pushing: `wrangler deploy --dry-run` reads 80 asset files, binds
+`ASSETS` and `IMAGES`, 7.3 MB upload / 1.5 MB gzip.
+
 **Verified in workerd, not just built:** `/`, `/products`, a product page,
 `/selector`, `/sitemap.xml` and `GET /api/enquiry` all 200, and a POST returned
 an honest `{delivered, emailed, stored}`.

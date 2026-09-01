@@ -5,8 +5,8 @@ form"* and hands the buyer WhatsApp and email instead. That is the form working
 as designed — both delivery routes report unconfigured, so it refuses to claim a
 send. It is not a bug, and setting these is the whole fix.
 
-The worker is **`3stechnology-v2`**. The live v1 worker is `3stechnology` — do
-not put these on that one by mistake.
+The worker is **`3stechnology`** — the live one. v2 was renamed onto it on
+2026-09-01; there is no separate v2 worker any more.
 
 ---
 
@@ -40,8 +40,8 @@ every enquiry into the inbox. Supabase only adds the durable record behind
 ## Steps — the dashboard
 
 1. **dash.cloudflare.com** → your account → **Compute (Workers)** → **Workers & Pages**.
-2. Open **`3stechnology-v2`**. Check the name at the top before typing anything —
-   `3stechnology` is the live site.
+2. Open **`3stechnology`**. This is the live site — every variable here takes
+   effect for real buyers on the next deployment.
 3. **Settings** tab → **Variables and Secrets**.
 4. **+ Add** for each row in the table above:
    - **Type** — *Secret* or *Text*, per the table.

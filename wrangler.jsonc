@@ -7,14 +7,20 @@
 	// is the whole point of the rebuild — it is what stops the form claiming a
 	// send that never happened. So this is a Worker, not a Pages upload.
 	//
-	// THE NAME IS DELIBERATELY NOT `3stechnology`. That is the live v1 worker
-	// serving 3stechnology.in; deploying this under that name would replace the
-	// live site in one command. This lands beside it as its own worker with its
-	// own workers.dev URL, and the custom domain is moved over ONLY when Onkar
-	// and Smruti have looked at it and said so.
+	// THE NAME IS THE LIVE SITE. Onkar, 2026-09-01, once the SMTP variables were
+	// set on the worker: this deploys ONTO `3stechnology`, the worker serving
+	// 3stechnology.in. Every push to main now replaces what the public sees.
+	// It was `3stechnology-v2` for exactly one day, deliberately, so v2 could
+	// stand up beside v1 without touching it — Cloudflare's build is bound to
+	// `3stechnology` and flagged the mismatch, and this is the decision that
+	// answers it rather than a rename for tidiness.
+	//
+	// The way back is not this file: v1 is on branch `v1` and tag
+	// `v1-live-2026-09-01` (7c787c7), and Cloudflare keeps previous versions —
+	// roll back in the dashboard, faster than any git operation.
 	// ---------------------------------------------------------------------------
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "3stechnology-v2",
+	"name": "3stechnology",
 	"main": ".open-next/worker.js",
 
 	// Held one day behind today's date on purpose: the installed workerd is

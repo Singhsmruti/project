@@ -410,10 +410,11 @@ inside the unsupported gap, deliberately, because that matched Sigma. Cloudflare
 won that trade. **Sigma is now one minor behind this project**; the house-stack
 parity from decision #45 is broken until Sigma follows.
 
-**`name` is `3stechnology-v2`, and that is not a detail.** The live v1 worker is
-`3stechnology`. Deploying under that name replaces the live site in one command.
-This lands beside it with its own `workers.dev` URL; the custom domain moves only
-when Onkar and Smruti have looked at it.
+**`name` is `3stechnology` — the LIVE worker.** It was `3stechnology-v2` for one
+day so v2 could stand up beside v1; Onkar moved it over on 2026-09-01 once the
+SMTP variables were set. **Every push to `main` now replaces what the public
+sees at 3stechnology.in.** Rolling back is a previous version in the Cloudflare
+dashboard, or branch `v1` / tag `v1-live-2026-09-01` — not an edit to this file.
 
 **The Windows symlink trap.** `serverExternalPackages: ["nodemailer"]` is
 load-bearing for the local build (Turbopack rewrites nodemailer's socket handling

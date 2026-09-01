@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   THEME 1 — "Flame" (default). Every value sampled from the 3S mark:
+   the flame is #d03731, the wordmark is near-black, and the mark's own
+   anti-alias ramp is NEUTRAL grey — so the ground is neutral too, not cream.
+--------------------------------------------------------------------------- */
+@theme {
+  --color-paper: #f7f7f8;
+  --color-paper-2: #edeef0;
+  --color-paper-3: #e0e1e4;
+
+  --color-ink: #101214;
+  --color-ink-2: #191c1f;
+  --color-ink-3: #35393d;
+  --color-ink-soft: #6b7075;
+  --color-ink-faint: #71767c;
+
+  --color-rule: #dcdce0;
+  --color-rule-dark: #282b2e;
+
+  /* the flame */
+  --color-signal: #d03731;
+  --color-signal-2: #a82a25;
+
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-spec), ui-monospace, "SFMono-Regular", monospace;
+}
+
+/* ---------------------------------------------------------------------------
+   THEME 2 — "Graphite". The first pass, kept as an alternative: warm cream
+   paper, colder crimson. Same token names, so no component knows the
+   difference — only the values swap.
+--------------------------------------------------------------------------- */
+:root[data-theme="graphite"] {
+  --color-paper: #faf8f5;
+  --color-paper-2: #f1eee8;
+  --color-paper-3: #e6e2da;
+
+  --color-ink: #14181c;
+  --color-ink-2: #1e242a;
+  --color-ink-3: #39424b;
+  --color-ink-soft: #626d78;
+  --color-ink-faint: #6e7883;
+
+  --color-rule: #ded9d0;
+  --color-rule-dark: #2c343b;
+
+  --color-signal: #c8102e;
+  --color-signal-2: #a20d25;
+}
+
+/* "Faint" has to mean the opposite thing on the dark bands. The token was
+   darkened on 2026-09-01 so faint grey on paper clears 4.5:1 — but the header
+   strip, the page heroes and the footer sit on near-black, where a DARKER faint
+   would disappear. Every dark band carries `bg-ink` or `gridpaper-dark`, so the
+   token is put back to its light value inside them and no component has to know
+   which ground it is on. Both themes' darks are near-black; one value serves. */
+.bg-ink,
+.gridpaper-dark {
+  --color-ink-faint: #9ca1a6;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The eyebrow above every section heading: a flame-red tick, then small mono caps.
+   Onkar, 2026-09-01: "the user of website cant see small things." 11px was
+   unreadable on a phone and on a plant-office monitor at arm's length; the whole
+   site's type floor was raised that day and nothing sits below 12px now. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+.eyebrow::before {
+  content: "";
+  width: 1.25rem;
+  height: 2px;
+  background: var(--color-signal);
+}
+
+/* Graph-paper wash behind product photography, so a cut-out gauge on white
+   still reads as sitting on something. */
+.gridpaper {
+  background-color: #fff;
+  background-image:
+    linear-gradient(to right, rgba(16, 18, 20, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 18, 20, 0.05) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.gridpaper-dark {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Small mono caps: eyebrows, labels, buttons, unit chips. Not for VALUES. */
+.spec {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* A measured VALUE — "−30 °C to 400 °C", "63, 100, 115 and 150mm".
+   Onkar, 2026-08-30: dark, clean sans-serif, medium/bold. Mono was chosen
+   originally so the figures would line up down the column, and that reason is
+   kept without the typewriter look: tabular-nums does the aligning, so the
+   numerals still sit in a grid while the text reads as the rest of the page.
+   The label beside it stays smaller and grey; only the value is dark. */
+.spec-value {
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+  }
+}

@@ -128,7 +128,7 @@ export const PRODUCTS: Product[] = [
           "Solid-front stainless steel case",
           "Excellent load-cycle stability and shock resistance",
           "All stainless steel construction",
-          "Positive pressure ranges to 20,000",
+          "Positive pressure ranges to 40,000",
         ],
       },
       { label: "Special versions", values: ["Other Pressure connections"] },

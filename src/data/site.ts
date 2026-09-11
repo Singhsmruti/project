@@ -125,7 +125,7 @@ export const CAPABILITIES = [
   },
   {
     title: "High pressure capability",
-    body: "Positive pressure ranges to 20,000 with solid-front cases and load-cycle stability that survives the duty.",
+    body: "Positive pressure ranges to 40,000 with solid-front cases and load-cycle stability that survives the duty.",
   },
   {
     title: "Temperature extremes",

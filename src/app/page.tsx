@@ -8,7 +8,7 @@ const FACTS = [
   { value: "40 – 250", unit: "mm", label: "Dial sizes" },
   { value: "±0.25", unit: "% FSD", label: "Best accuracy" },
   { value: "−50…650", unit: "°C", label: "Temperature range" },
-  { value: "20,000", unit: "psi", label: "Max pressure" },
+  { value: "40,000", unit: "psi", label: "Max pressure" },
 ];
 
 const CATEGORY_IMAGE: Record<string, string> = {
